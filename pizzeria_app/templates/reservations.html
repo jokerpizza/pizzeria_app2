@@ -1,0 +1,46 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Rezerwacja stolika</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Imię i nazwisko</label>
+            <input type="text" class="form-control" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Numer telefonu</label>
+            <input type="text" class="form-control" name="phone" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Data rezerwacji</label>
+            <input type="date" class="form-control" name="date" min="{{ min_date }}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Godzina</label>
+            <input type="time" class="form-control" name="time" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Czas pobytu</label>
+            <select class="form-control" name="duration">
+                <option value="75">1:15h</option>
+                <option value="120">2h</option>
+                <option value="180">3h</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Liczba osób</label>
+            <input type="number" class="form-control" name="num_people" min="1" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Lokalizacja</label>
+            <select class="form-control" name="location">
+                <option value="inside">Sala wewnętrzna</option>
+                <option value="outside">Ogródek</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Zarezerwuj</button>
+    </form>
+</div>
+{% endblock %}
