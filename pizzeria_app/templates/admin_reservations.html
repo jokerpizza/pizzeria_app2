@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Panel Rezerwacji</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imię i nazwisko</th>
+                <th>Telefon</th>
+                <th>Data</th>
+                <th>Godzina</th>
+                <th>Stolik</th>
+                <th>Status</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in reservations %}
+            <tr>
+                <td>{{ res.id }}</td>
+                <td>{{ res.name }}</td>
+                <td>{{ res.phone }}</td>
+                <td>{{ res.date }}</td>
+                <td>{{ res.time }}</td>
+                <td>{{ res.table.name if res.table else "Brak" }}</td>
+                <td>{{ res.status }}</td>
+                <td>
+                    <form method="POST" style="display:inline;">
+                        <input type="hidden" name="reservation_id" value="{{ res.id }}">
+                        <button type="submit" name="action" value="confirm" class="btn btn-success btn-sm">Potwierdź</button>
+                        <button type="submit" name="action" value="cancel" class="btn btn-danger btn-sm">Anuluj</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
